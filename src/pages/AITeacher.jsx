@@ -44,7 +44,7 @@ export default function AITeacher() {
       // To guarantee no API role sequence errors, we send just the current prompt + system instructions
       const prompt = `You are CampusAngel, a brilliant, friendly, and highly motivating AI Teacher for a student named Deepesh. Keep responses concise, clear, and educational. Use markdown.\n\nStudent asks: ${userText}`;
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

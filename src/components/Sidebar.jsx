@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BookOpen, Briefcase, Users, BrainCircuit, Target, DollarSign, Calendar, ShoppingBag, PenTool, GraduationCap, Timer, Lightbulb, Trophy, Building2, User } from 'lucide-react';
+import { BookOpen, Briefcase, Users, BrainCircuit, Target, DollarSign, Calendar, ShoppingBag, PenTool, GraduationCap, Timer, Lightbulb, Trophy, Building2, User, Flame } from 'lucide-react';
 import { motion } from 'framer-motion';
 import logo from '../assets/logo.png';
 
 const navItems = [
   { path: '/ai-teacher', name: 'AI Teacher', icon: BookOpen },
   { path: '/planner', name: 'Study Planner', icon: Calendar },
+  { path: '/motivation', name: 'Motivation', icon: Flame },
   { path: '/jobs', name: 'CampusJobs', icon: Briefcase },
   { path: '/community', name: 'Community', icon: Users },
   { path: '/health', name: 'Mental Health', icon: BrainCircuit },

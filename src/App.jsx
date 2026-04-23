@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar'
 import logo from './assets/logo.png'
 import AITeacher from './pages/AITeacher'
 import Planner from './pages/Planner'
+import Motivation from './pages/Motivation'
 import CampusJobs from './pages/CampusJobs'
 import Community from './pages/Community'
 import MentalHealth from './pages/MentalHealth'
@@ -49,6 +50,7 @@ function App() {
           <Route path="/" element={<Navigate to="/ai-teacher" replace />} />
           <Route path="/ai-teacher" element={<AITeacher />} />
           <Route path="/planner" element={<Planner />} />
+          <Route path="/motivation" element={<Motivation />} />
           <Route path="/jobs" element={<CampusJobs />} />
           <Route path="/community" element={<Community />} />
           <Route path="/health" element={<MentalHealth />} />

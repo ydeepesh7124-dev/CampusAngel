@@ -52,7 +52,7 @@ export default function MentalHealth() {
 
       const prompt = `You are a highly empathetic, non-judgmental, and supportive mental health listener for a student named Deepesh. Acknowledge their feelings, be incredibly gentle, and offer mild reassurance. Do not give medical advice. Keep it concise.\n\nStudent says: ${userText}`;
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }] })

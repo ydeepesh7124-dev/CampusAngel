@@ -4,14 +4,28 @@
   --bg-primary: #0a0a0f;
   --bg-secondary: #13131a;
   --bg-tertiary: #1c1c24;
-  --accent-primary: #8b5cf6; /* Vibrant Purple */
-  --accent-secondary: #3b82f6; /* Blue */
+  --accent-primary: #10b981; /* Emerald Green */
+  --accent-secondary: #059669; /* Dark Green */
   --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --border-color: rgba(255, 255, 255, 0.08);
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+:root.light-mode {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --accent-primary: #10b981;
+  --accent-secondary: #059669;
+  --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -117,8 +131,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 100vh;
   overflow-y: auto;
   position: relative;
-  background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.05), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.05), transparent 40%);
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.05), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(5, 150, 105, 0.05), transparent 40%);
 }
 
 button {
@@ -141,12 +155,12 @@ input, textarea {
   border-radius: 12px;
   font-weight: 500;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
 }
 
 .btn-icon {

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Gift, Crown, Medal } from 'lucide-react';
+import { Trophy, Gift, Crown, Medal, Sun, Moon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const TOP_STUDENTS = [
@@ -11,6 +11,15 @@ const TOP_STUDENTS = [
 
 export default function GlobalHeader() {
   const navigate = useNavigate();
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove('light-mode');
+    } else {
+      document.documentElement.classList.add('light-mode');
+    }
+  }, [isDarkMode]);
 
   return (
     <div 
@@ -51,21 +60,33 @@ export default function GlobalHeader() {
         </div>
       </div>
 
-      {/* Reward Unlock Progress */}
-      <div className="global-header-reward" style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: '1', maxWidth: '300px', marginLeft: 'auto' }}>
-        <Gift size={18} color="var(--accent-primary)" />
-        <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-            <span style={{ color: 'var(--text-secondary)' }}>Next Unlock</span>
-            <span style={{ fontWeight: 'bold', color: 'var(--accent-primary)' }}>7.2k / 10k Users</span>
-          </div>
-          <div style={{ height: '6px', background: 'var(--bg-tertiary)', borderRadius: '3px', overflow: 'hidden' }}>
-            <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: '72%' }}
-              transition={{ duration: 1 }}
-              style={{ height: '100%', background: 'var(--accent-gradient)', borderRadius: '3px' }} 
-            />
+      {/* Right Actions */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: 'auto' }}>
+        <button 
+          onClick={(e) => { e.stopPropagation(); setIsDarkMode(!isDarkMode); }}
+          className="btn-icon" 
+          style={{ width: '36px', height: '36px', borderRadius: '50%' }}
+          title="Toggle Theme"
+        >
+          {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
+
+        {/* Reward Unlock Progress */}
+        <div className="global-header-reward" style={{ display: 'flex', alignItems: 'center', gap: '16px', width: '200px' }}>
+          <Gift size={18} color="var(--accent-primary)" />
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
+              <span style={{ color: 'var(--text-secondary)' }}>Next Unlock</span>
+              <span style={{ fontWeight: 'bold', color: 'var(--accent-primary)' }}>7.2k / 10k Users</span>
+            </div>
+            <div style={{ height: '6px', background: 'var(--bg-tertiary)', borderRadius: '3px', overflow: 'hidden' }}>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: '72%' }}
+                transition={{ duration: 1 }}
+                style={{ height: '100%', background: 'var(--accent-gradient)', borderRadius: '3px' }} 
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default function PracticeHub() {
         prompt += 'Format the output as a Practice Paper with 3 short-answer questions and 2 long-essay questions. Provide a brief grading rubric or key points expected in the answers at the end.';
       }
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }] })

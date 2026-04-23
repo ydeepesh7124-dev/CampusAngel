@@ -53,7 +53,7 @@ export default function Diary() {
       if (!apiKey) throw new Error("API key missing");
       const prompt = `You are a brilliant creative writing assistant. Take the following draft of a story or poem and enhance it. Make it more descriptive, poetic, and engaging, but keep the original meaning and tone.\n\nDraft:\n${creativeText}`;
       
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }] })
@@ -100,7 +100,7 @@ export default function Diary() {
       Feeling about tomorrow: ${form.tomorrow}
       Keep it sounding natural, personal, and like a real human wrote it.`;
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }] })

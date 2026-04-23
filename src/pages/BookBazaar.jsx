@@ -7,6 +7,7 @@ const INITIAL_BOOKS = [
   { id: 2, title: 'Data Structures Flashcards (PDF)', author: 'Sarah M.', price: '₹5', originalPrice: 'N/A', type: 'E-Book', condition: 'Digital', user: 'Sarah M.', image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=200' },
   { id: 3, title: 'Physics 101 Lecture Notes', author: 'Alex D.', price: 'Free', originalPrice: 'N/A', type: 'E-Book', condition: 'Digital', user: 'Alex D.', image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=200' },
   { id: 4, title: 'Calculus: Early Transcendentals', author: 'James Stewart', price: '₹30', originalPrice: '₹120', type: 'Physical', condition: 'Like New', user: 'Priya S.', image: 'https://images.unsplash.com/photo-1633613286991-611fe299c4bc?auto=format&fit=crop&q=80&w=200' },
+  { id: 5, title: 'Data Structures Handwritten Notes', author: 'Deepesh', price: '₹15', originalPrice: 'N/A', type: 'Notes', condition: 'Clear Handwriting', user: 'Deepesh', image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&q=80&w=200' },
 ];
 
 export default function BookBazaar() {
@@ -27,7 +28,7 @@ export default function BookBazaar() {
       price: newBook.price.includes('₹') || newBook.price.toLowerCase() === 'free' ? newBook.price : `₹${newBook.price}`,
       originalPrice: 'N/A',
       type: newBook.type,
-      condition: newBook.type === 'E-Book' ? 'Digital' : 'Good',
+      condition: newBook.type === 'E-Book' ? 'Digital' : newBook.type === 'Notes' ? 'Good' : 'Good',
       user: 'Deepesh',
       image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&q=80&w=200'
     };
@@ -70,7 +71,7 @@ export default function BookBazaar() {
       {/* Search and Tabs */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '24px', borderBottom: '1px solid var(--border-color)', paddingBottom: '16px' }}>
         <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', whiteSpace: 'nowrap' }}>
-          {['All', 'Physical', 'E-Book'].map((tab) => {
+          {['All', 'Physical', 'E-Book', 'Notes'].map((tab) => {
             const tabId = tab.toLowerCase();
             const isActive = activeTab === tabId;
             return (
@@ -123,7 +124,7 @@ export default function BookBazaar() {
                 <div style={{ height: '160px', width: '100%', overflow: 'hidden', position: 'relative' }}>
                   <img src={book.image} alt={book.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', top: '12px', right: '12px', padding: '4px 12px', borderRadius: '100px', backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', color: 'white', fontSize: '12px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    {book.type === 'E-Book' ? <Download size={12} /> : <Book size={12} />}
+                    {book.type === 'E-Book' ? <Download size={12} /> : book.type === 'Notes' ? <Tag size={12} /> : <Book size={12} />}
                     {book.type}
                   </div>
                 </div>
@@ -212,7 +213,10 @@ export default function BookBazaar() {
                       <input type="radio" checked={newBook.type === 'Physical'} onChange={() => setNewBook({...newBook, type: 'Physical'})} /> Physical Book
                     </label>
                     <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                      <input type="radio" checked={newBook.type === 'E-Book'} onChange={() => setNewBook({...newBook, type: 'E-Book'})} /> E-Book / Digital Notes
+                      <input type="radio" checked={newBook.type === 'E-Book'} onChange={() => setNewBook({...newBook, type: 'E-Book'})} /> E-Book
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                      <input type="radio" checked={newBook.type === 'Notes'} onChange={() => setNewBook({...newBook, type: 'Notes'})} /> Notes
                     </label>
                   </div>
                 </div>

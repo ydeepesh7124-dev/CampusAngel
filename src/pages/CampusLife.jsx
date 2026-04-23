@@ -97,7 +97,7 @@ export default function CampusLife() {
                 <div style={{ fontSize: '36px', fontWeight: 'bold' }}>{ACADEMIC_DATA.gpa}<span style={{ fontSize: '16px', color: 'var(--text-secondary)' }}>/4.0</span></div>
               </div>
 
-              <div className="glass-panel" style={{ padding: '24px', borderLeft: '4px solid #10b981' }}>
+              <div className="glass-panel" style={{ padding: '24px', borderLeft: '4px solid #10b981', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                   <CheckCircle color="#10b981" size={24} />
                   <h3 style={{ fontSize: '18px', fontWeight: 'bold' }}>Overall Attendance</h3>
@@ -105,7 +105,12 @@ export default function CampusLife() {
                 <div style={{ fontSize: '36px', fontWeight: 'bold', color: ACADEMIC_DATA.attendance < 75 ? '#ef4444' : 'inherit' }}>
                   {ACADEMIC_DATA.attendance}%
                 </div>
-                <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '8px' }}>Target: Minimum 75%</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'auto', paddingTop: '16px' }}>
+                  <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Target: Min 75%</p>
+                  <a href="https://erp.university.edu/attendance" target="_blank" rel="noreferrer" style={{ fontSize: '12px', color: 'var(--accent-primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    Detailed Logs <ChevronRight size={12} />
+                  </a>
+                </div>
               </div>
 
               <div className="glass-panel" style={{ padding: '24px', borderLeft: '4px solid #8b5cf6' }}>
@@ -135,12 +140,31 @@ export default function CampusLife() {
                       <span style={{ color: 'var(--text-secondary)' }}>Attendance: {sub.attended}/{sub.totalClasses} classes</span>
                       <span style={{ fontWeight: 'bold', color: sub.attendance < 75 ? '#ef4444' : '#10b981' }}>{sub.attendance}%</span>
                     </div>
-                    <div style={{ height: '8px', background: 'var(--bg-secondary)', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div style={{ height: '8px', background: 'var(--bg-secondary)', borderRadius: '4px', overflow: 'hidden', marginBottom: '12px' }}>
                       <motion.div 
                         initial={{ width: 0 }} animate={{ width: `${sub.attendance}%` }} 
                         style={{ height: '100%', background: sub.attendance < 75 ? '#ef4444' : '#10b981', borderRadius: '4px' }} 
                       />
                     </div>
+                    {(() => {
+                      const target = 75;
+                      const current = (sub.attended / sub.totalClasses) * 100;
+                      if (current >= target) {
+                        const canMiss = Math.floor((sub.attended / (target / 100)) - sub.totalClasses);
+                        return (
+                          <div style={{ fontSize: '13px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <CheckCircle size={14} /> {canMiss > 0 ? `Safe to miss ${canMiss} class${canMiss > 1 ? 'es' : ''}` : 'Exactly on track'}
+                          </div>
+                        );
+                      } else {
+                        const needed = Math.ceil(((target / 100) * sub.totalClasses - sub.attended) / (1 - (target / 100)));
+                        return (
+                          <div style={{ fontSize: '13px', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <TrendingUp size={14} /> Need {needed} class{needed > 1 ? 'es' : ''} to reach {target}%
+                          </div>
+                        );
+                      }
+                    })()}
                   </div>
                 </div>
               ))}
