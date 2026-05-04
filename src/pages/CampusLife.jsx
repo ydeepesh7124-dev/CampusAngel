@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, TrendingUp, CheckCircle, CalendarOff, PartyPopper, Users, FileText, ChevronRight, PieChart } from 'lucide-react';
+import { Building2, TrendingUp, CheckCircle, CalendarOff, PartyPopper, Users, FileText, ChevronRight, PieChart, Download } from 'lucide-react';
 
 const ACADEMIC_DATA = {
   gpa: 3.8,
@@ -165,6 +165,13 @@ export default function CampusLife() {
                         );
                       }
                     })()}
+                  </div>
+                  
+                  <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Official University Portal</span>
+                    <a href={`https://university.edu/syllabus/${sub.name.replace(/\s+/g, '-').toLowerCase()}.pdf`} target="_blank" rel="noreferrer" className="btn-primary" style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
+                      <Download size={14} /> Syllabus
+                    </a>
                   </div>
                 </div>
               ))}
